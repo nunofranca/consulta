@@ -30,6 +30,7 @@ class ParticipantResource extends Resource
     {
         return $table
             ->poll(10)
+            ->defaultSort('dateBirth', )
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->label('NOME')
