@@ -15,11 +15,10 @@ class ManageParticipants extends ManageRecords
     public function getTabs(): array
     {
         return [
-            'Todos' => Tab::make(),
-            'Usados' => Tab::make()
-                ->modifyQueryUsing(fn (Builder $query) => $query->where('status', true)),
-            'Não usados' => Tab::make()
-                ->modifyQueryUsing(fn (Builder $query) => $query->where('status', false)),
+            'Sem chave' => Tab::make()
+                ->modifyQueryUsing(fn (Builder $query) => $query->where('pix', false)),
+            'Todos' => Tab::make()
+
         ];
     }
 }
