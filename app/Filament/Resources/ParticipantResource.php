@@ -33,7 +33,7 @@ class ParticipantResource extends Resource
             ->deferLoading()
 
             ->defaultSort('dateBirth')
-            ->modifyQueryUsing(fn (Builder $query) => $query->whereNull('pix')->limit(20))
+
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->label('NOME')

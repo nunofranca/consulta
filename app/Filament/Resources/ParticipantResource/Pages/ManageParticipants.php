@@ -17,7 +17,8 @@ class ManageParticipants extends ManageRecords
         return [
             'Sem chave' => Tab::make()
                 ->modifyQueryUsing(fn (Builder $query) => $query->where('pix', true)),
-            'Todos' => Tab::make()
+            'Aguardando teste' => Tab::make()
+                ->modifyQueryUsing(fn (Builder $query) => $query->whereNull('pix')->limit(20))
 
         ];
     }
