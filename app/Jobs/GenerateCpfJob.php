@@ -1,39 +1,37 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Jobs;
 
 use App\Models\Participant;
 use Carbon\Carbon;
-use Illuminate\Console\Command;
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldBeUnique;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 
-
-class GenerateCpfCommand extends Command
+class GenerateCpfJob implements ShouldQueue
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'app:generatecpf';
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
-     * The console command description.
-     *
-     * @var string
+     * Create a new job instance.
      */
-    protected $description = 'Command description';
+    public function __construct()
+    {
+        //
+    }
 
     /**
-     * Execute the console command.
+     * Execute the job.
      */
-    public function handle()
+    public function handle(): void
     {
 
-
         $cpf = rand(00000000000, 99999999999);
-//        $cpf = '11637563779';
 
         if ($this->validaCPF($cpf)) {
 
@@ -54,7 +52,6 @@ class GenerateCpfCommand extends Command
             }
         }
     }
-
     private function validaCPF($cpf)
     {
 
