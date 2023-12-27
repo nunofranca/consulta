@@ -20,6 +20,7 @@ class ParticipantResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
     protected static ?string $pluralModelLabel = 'Participantes';
     protected static ?string $modelLabel = 'Participante';
+    protected static int $globalSearchResultsLimit = 20;
 
     public static function form(Form $form): Form
     {
