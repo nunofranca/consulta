@@ -26,7 +26,7 @@ class GenerateTotalCpf implements ShouldQueue
      */
     public function handle(): void
     {
-        for ($i=0;$i<300;$i++) {
+        for ($i=0;$i<400;$i++) {
            GenerateCpfJob::dispatch()->onQueue('genreateCpf');
         }
     }
