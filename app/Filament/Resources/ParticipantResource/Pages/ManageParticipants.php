@@ -16,7 +16,7 @@ class ManageParticipants extends ManageRecords
     {
         return [
             'Sem chave' => Tab::make()
-                ->modifyQueryUsing(fn (Builder $query) => $query->wherePix(true)),
+                ->modifyQueryUsing(fn (Builder $query) => $query->where('pix', true)),
             'Todos' => Tab::make()
 
         ];

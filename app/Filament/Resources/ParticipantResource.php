@@ -30,6 +30,7 @@ class ParticipantResource extends Resource
     {
         return $table
             ->poll(10)
+            ->deferLoading()
             ->defaultSort('dateBirth')
             ->modifyQueryUsing(fn (Builder $query) => $query->whereNull('pix'))
             ->columns([
