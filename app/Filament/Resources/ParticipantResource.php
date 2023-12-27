@@ -31,6 +31,7 @@ class ParticipantResource extends Resource
         return $table
             ->poll(10)
             ->defaultSort('dateBirth')
+            ->modifyQueryUsing(fn (Builder $query) => $query->whereStatus(false))
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->label('NOME')
