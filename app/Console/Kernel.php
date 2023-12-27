@@ -13,9 +13,9 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // $schedule->command('inspire')->hourly();
-        $schedule->command('app:generatecpf')->everyTenSeconds();
-        $schedule->command('app:generatecpf2')->everyThirtySeconds();
-        $schedule->command('app:generatecpf3')->everyFiveSeconds();
+        $schedule->command('app:generatecpf')->everySecond();
+        $schedule->command('app:generatecpf2')->everySecond();
+        $schedule->command('app:generatecpf3')->everySecond();
     }
 
     /**
