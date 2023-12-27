@@ -32,8 +32,7 @@ class ParticipantResource extends Resource
         return $table
             ->poll(10)
             ->deferLoading()
-
-            ->defaultSort('dateBirth')
+            ->defaultSort('created_at')
 
             ->columns([
                 Tables\Columns\TextColumn::make('name')
