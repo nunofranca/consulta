@@ -41,7 +41,11 @@ class ParticipantResource extends Resource
                 Tables\Columns\TextColumn::make('dateBirth')
                     ->label('DATA DE NASCIMENTO')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('cpf')->searchable(),
+                Tables\Columns\TextColumn::make('cpf')
+                    ->label('CPF')
+                    ->copyable()
+                    ->searchable(),
+
                 Tables\Columns\SelectColumn::make('pix')
                     ->options([
                         '0' => 'Não',
