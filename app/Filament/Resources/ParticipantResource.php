@@ -31,8 +31,9 @@ class ParticipantResource extends Resource
         return $table
             ->poll(10)
             ->deferLoading()
+
             ->defaultSort('dateBirth')
-            ->modifyQueryUsing(fn (Builder $query) => $query->whereNull('pix'))
+            ->modifyQueryUsing(fn (Builder $query) => $query->whereNull('pix')->limit(20))
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->label('NOME')
