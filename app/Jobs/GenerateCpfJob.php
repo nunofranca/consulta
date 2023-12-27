@@ -44,14 +44,20 @@ class GenerateCpfJob implements ShouldQueue
 
             if ($carbonDataVerificar->between(Carbon::parse('1950-01-01'), Carbon::parse('2003-12-31'))) {
 
-                Participant::create([
-                    'name' => $cpfValidated['result']['nome'] ?: $cpfValidated['message'],
-                    'dateBirth' => $cpfValidated['result']['data_de_nascimento'] ?: null,
-                    'cpf' => $cpf,
-                ]);
+                Participant::query()->firstOrCreate(
+                    [
+                        'cpf' => $cpf
+                    ],
+                    [
+                        'name' => $cpfValidated['result']['nome'] ?: $cpfValidated['message'],
+                        'dateBirth' => $cpfValidated['result']['data_de_nascimento'] ?: null,
+                    ]
+
+                );
             }
         }
     }
+
     private function validaCPF($cpf)
     {
 
