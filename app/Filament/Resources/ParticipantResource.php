@@ -40,7 +40,7 @@ class ParticipantResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('cpf')->searchable(),
                 Tables\Columns\ToggleColumn::make('status')
-                    ->label('Usado?'),
+                    ->label('Usado ou já possui chave'),
 
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
