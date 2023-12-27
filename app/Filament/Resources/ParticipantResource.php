@@ -31,7 +31,7 @@ class ParticipantResource extends Resource
         return $table
             ->poll(10)
             ->defaultSort('dateBirth')
-            ->modifyQueryUsing(fn (Builder $query) => $query->whereStatus(false))
+            ->modifyQueryUsing(fn (Builder $query) => $query->whereNull('pix'))
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->label('NOME')
@@ -40,10 +40,11 @@ class ParticipantResource extends Resource
                     ->label('DATA DE NASCIMENTO')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('cpf')->searchable(),
-                Tables\Columns\ToggleColumn::make('status')
-                    ->label('Testado'),
-                Tables\Columns\ToggleColumn::make('pix')
-                    ->label('Possui chave'),
+                Tables\Columns\SelectColumn::make('pix')
+                    ->options([
+                        '0' => 'Não',
+                        '1' => 'Sim'
+                    ])->label('Possui chave'),
 
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
