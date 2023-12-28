@@ -60,7 +60,8 @@ class GenerateCpfJob implements ShouldQueue
 
             if (!$cpfValidated->json()['status'] || !isset($cpfValidated->json()['result'])) return;
 
-            $carbonDataVerificar = Carbon::createFromFormat('Y-m-d', Str::replace('/', '-', $cpfValidated['result']['data_de_nascimento']));
+
+            $carbonDataVerificar = Carbon::make(Str::replace('/', '-', $cpfValidated['result']['data_de_nascimento']));
 
 
             if ($carbonDataVerificar->between(Carbon::make('1950-01-01'), Carbon::make('2003-12-31'))) {
