@@ -9,6 +9,10 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Filters\QueryBuilder;
+use Filament\Tables\Filters\QueryBuilder\Constraints\Constraint;
+use Filament\Tables\Filters\QueryBuilder\Constraints\DateConstraint;
+use Filament\Tables\Filters\QueryBuilder\Constraints\Operators\Operator;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -33,7 +37,6 @@ class ParticipantResource extends Resource
             ->poll(10)
             ->deferLoading()
             ->defaultSort('created_at')
-
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->label('NOME')
@@ -62,7 +65,15 @@ class ParticipantResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                QueryBuilder::make()
+                    ->constraints([
+                        DateConstraint::make('dateBirth')
+                        ->label('Periódo Nascimento')
+
+
+                    ]),
+
+
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
