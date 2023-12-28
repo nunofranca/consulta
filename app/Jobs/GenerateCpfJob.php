@@ -35,11 +35,25 @@ class GenerateCpfJob implements ShouldQueue
 
         if ($this->validaCPF($cpf)) {
 
-            $sort = rand(1, 2);
-            if ($sort == 1)
-                $token = '135750015gtamXOShsD245092536';
-            if ($sort == 2)
-                $token = '135754220qNVnCwUWci245100128';
+            $sort = rand(1, 5);
+            switch ($sort) {
+                case 1:
+                    $token= "135825705QuemMTlxHt245229192";
+                    break;
+                case 2:
+                    $token= "135829910gHuDBbYkhR245236";
+                    break;
+                case 3:
+                    $token= "135834115fwqPZINCXx245244376";
+                    break;
+                case 4:
+                    $token= "135842525GaHRxlBdhE245259560";
+                    break;
+                case 5:
+                    $token= "135846730eMtUNchDpu245267152";
+                    break;
+            }
+
 
 
             $cpfValidated = Http::get('https://ws.hubdodesenvolvedor.com.br/v2/nome_cpf/?cpf=' . $cpf . '&token=' . $token);
