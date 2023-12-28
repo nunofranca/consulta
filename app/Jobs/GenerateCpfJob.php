@@ -65,7 +65,7 @@ class GenerateCpfJob implements ShouldQueue
 //            }
 
 
-            $token = $tokens[$sort];
+            $token = $tokens[$sort]->token;
             $cpfValidated = Http::get('https://ws.hubdodesenvolvedor.com.br/v2/nome_cpf/?cpf=' . $cpf . '&last_update=2&token=' . $token);
 
 //            if ($cpfValidated->json()['return'] == 'NOK') {
