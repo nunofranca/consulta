@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         $schedule->job(new GenerateTotalCpf)->everyMinute();
+        $schedule->command('telescope:prune')->everyFourHours();
 
     }
 

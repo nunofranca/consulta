@@ -25,10 +25,10 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
             }
 
             return $entry->isReportableException() ||
-                   $entry->isFailedRequest() ||
-                   $entry->isFailedJob() ||
-                   $entry->isScheduledTask() ||
-                   $entry->hasMonitoredTag();
+                $entry->isQuery() ||
+                $entry->isRequest() ||
+                $entry->isFailedRequest() ||
+                $entry->isScheduledTask();
         });
     }
 
@@ -59,7 +59,7 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
     {
         Gate::define('viewTelescope', function ($user) {
             return in_array($user->email, [
-               'contato@nunotech.com.br'
+                'contato@nunotech.com.br'
             ]);
         });
     }
