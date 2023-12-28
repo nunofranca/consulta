@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ParticipantResource\Pages;
 use App\Filament\Resources\ParticipantResource\RelationManagers;
 use App\Models\Participant;
+use Carbon\Carbon;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -33,7 +34,10 @@ class ParticipantResource extends Resource
 
     public static function table(Table $table): Table
     {
+
         return $table
+            ->modifyQueryUsing(fn (Builder $query) => $query
+                ->whereBetween('dateBirth',[Carbon::createFromFormat('d-m-Y', '01-01-1970'), Carbon::createFromFormat('d-m-Y','31-12-1983')]))
             ->poll(10)
             ->deferLoading()
             ->defaultSort('created_at')
