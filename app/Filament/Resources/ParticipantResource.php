@@ -10,12 +10,14 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Filters\QueryBuilder;
 use Filament\Tables\Filters\QueryBuilder\Constraints\Constraint;
 use Filament\Tables\Filters\QueryBuilder\Constraints\DateConstraint;
 use Filament\Tables\Filters\QueryBuilder\Constraints\Operators\Operator;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ParticipantResource extends Resource
@@ -61,7 +63,8 @@ class ParticipantResource extends Resource
                     ])->label('Possui chave'),
 
                 Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
+                    ->label('Cadastro')
+                    ->dateTime('d-m-Y H:i')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
