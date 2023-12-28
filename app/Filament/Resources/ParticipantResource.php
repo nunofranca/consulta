@@ -39,7 +39,7 @@ class ParticipantResource extends Resource
 
         return $table
             ->modifyQueryUsing(fn (Builder $query) => $query
-                ->whereBetween('dateBirth',[Carbon::make('1970-01-01'), Carbon::make('1983-01-01')]))
+                ->whereBetween('dateBirth',[Carbon::make('1970-01-01'), Carbon::make('1983-12-31')]))
             ->poll(10)
             ->deferLoading()
             ->defaultSort('created_at')
