@@ -45,6 +45,7 @@ class ParticipantResource extends Resource
             ->defaultSort('created_at')
             ->columns([
                 Tables\Columns\TextColumn::make('name')
+                    ->copyable()
                     ->label('NOME')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('dateBirth')
