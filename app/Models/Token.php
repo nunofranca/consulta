@@ -10,5 +10,5 @@ class Token extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable =['token', 'name', 'email', 'passord'];
+    protected $fillable =['token', 'name', 'email', 'password'];
 }

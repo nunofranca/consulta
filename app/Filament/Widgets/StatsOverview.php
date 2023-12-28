@@ -17,7 +17,7 @@ class StatsOverview extends BaseWidget
 //        });
 
         $totalCadastro = Participant::query();
-        dd(count($totalCadastro->get()));
+
 
         $totalRange = $totalCadastro->whereBetween('dateBirth', [Carbon::make('1970-01-01'), Carbon::make('1989-01-01')]);
 
