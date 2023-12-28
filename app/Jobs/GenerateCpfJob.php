@@ -41,7 +41,7 @@ class GenerateCpfJob implements ShouldQueue
                     $token= "135825705QuemMTlxHt245229192";
                     break;
                 case 2:
-                    $token= "135829910gHuDBbYkhR245236";
+                    $token= "135829910gHuDBbYkhR245236784";
                     break;
                 case 3:
                     $token= "135834115fwqPZINCXx245244376";
