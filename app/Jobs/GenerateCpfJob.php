@@ -56,8 +56,8 @@ class GenerateCpfJob implements ShouldQueue
                         'cpf' => $cpf
                     ],
                     [
-                        'name' => $cpfValidated['result']['nome'] ?: $cpfValidated['message'],
-                        'dateBirth' => $cpfValidated['result']['data_de_nascimento'] ?: null,
+                        'name' => $cpfValidated['result']['nome'],
+                        'dateBirth' => $carbonDataVerificar,
                     ]
 
                 );

@@ -37,7 +37,7 @@ class ParticipantResource extends Resource
 
         return $table
             ->modifyQueryUsing(fn (Builder $query) => $query
-                ->whereBetween('dateBirth',[Carbon::createFromFormat('d/m/Y', '01/01/1970'), Carbon::createFromFormat('d/m/Y','31/12/1983')]))
+                ->whereBetween('dateBirth',[Carbon::make('1970-01-01'), Carbon::make('1989-01-01')]))
             ->poll(10)
             ->deferLoading()
             ->defaultSort('created_at')
@@ -46,6 +46,7 @@ class ParticipantResource extends Resource
                     ->label('NOME')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('dateBirth')
+                    ->date('d/m/Y')
                     ->label('DATA DE NASCIMENTO')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('cpf')
