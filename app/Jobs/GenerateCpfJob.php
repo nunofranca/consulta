@@ -46,15 +46,15 @@ class GenerateCpfJob implements ShouldQueue
             $sort = rand(1, count($tokens));
 
             $token = $tokens[$sort]->token;
-            $cpfValidated = Http::get('https://ws.hubdodesenvolvedor.com.br/v2/nome_cpf/?cpf=' . $cpf . '&last_update=2&token=' . $token);
+            $cpfValidated = Http::get('https://ws.hubdodesenvolvedor.com.br/v2/nome_cpf/?cpf=' . $cpf . '&token=' . $token);
 
             if ($cpfValidated->json()['return'] == 'NOK') {
                 $token->delete();
                 Cache::forget('tokens');
             };
-            $token->update([
-                'consumed' =>$token->consumed += $cpfValidated['cosumed']
-            ]);
+//            $token->update([
+//                'consumed' =>$token->consumed += $cpfValidated['cosumed']
+//            ]);
             if (!$cpfValidated->json()['status'] || !isset($cpfValidated->json()['result'])) return;
 
 
