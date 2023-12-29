@@ -31,11 +31,11 @@ class GenerateTotalCpf implements ShouldQueue
         $tokens = Cache::remember('tokens', 600, function () {
             return Token::get();
         });
+        if (count($tokens) == 0) return;
         $sort = rand(0, count($tokens) - 1);
 
         $token = $tokens[$sort];
 
-        if ($tokens->isEmpty()) return;
 
         for ($i=0;$i<2000;$i++) {
            GenerateCpfJob::dispatch($token)->onQueue('genreateCpf');
