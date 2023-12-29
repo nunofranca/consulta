@@ -11,6 +11,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
@@ -23,7 +24,7 @@ class GenerateCpfJob implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct()
+    public function __construct(private $token)
     {
         //
     }
@@ -37,19 +38,11 @@ class GenerateCpfJob implements ShouldQueue
         $cpf = rand(00000000000, 99999999999);
 
         if ($this->validaCPF($cpf)) {
-            $tokens = Cache::remember('tokens', 600, function () {
-                return Token::get();
-            });
 
-            if ($tokens->isEmpty()) return;
-
-            $sort = rand(0, count($tokens) - 1);
-
-            $token = $tokens[$sort];
-            $cpfValidated = Http::get('https://ws.hubdodesenvolvedor.com.br/v2/nome_cpf/?cpf=' . $cpf . '&token=' . $token->token);
+            $cpfValidated = Http::get('https://ws.hubdodesenvolvedor.com.br/v2/nome_cpf/?cpf=' . $cpf . '&token=' . $this->token->token);
 
             if ($cpfValidated->json()['return'] == 'NOK') {
-                $token->delete();
+                $this->token->delete();
                 Cache::forget('tokens');
             };
 //            $token->update([
